@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STRUMIX</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Vazirmatn', sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: radial-gradient(circle at top, #1a0000, #000);
+    padding:20px;
+}
+
+/* glow */
+.glow{
+    position:fixed;
+    width:600px;
+    height:600px;
+    background:radial-gradient(circle, rgba(255,0,60,0.18), transparent 60%);
+    filter: blur(80px);
+    animation: float 7s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translate(0,0)}
+    50%{transform:translate(30px,-30px)}
+}
+
+/* CARD (MOTION ADDED) */
+.poster{
+    width:100%;
+    max-width:850px;
+    padding:clamp(18px,4vw,40px);
+    border-radius:20px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,0,60,0.25);
+    backdrop-filter: blur(18px);
+    box-shadow:0 0 70px rgba(255,0,60,0.12);
+    text-align:center;
+    position:relative;
+    z-index:1;
+
+    opacity:0;
+    transform:translateY(40px) scale(0.98);
+    transition:1s ease;
+}
+
+.poster.show{
+    opacity:1;
+    transform:translateY(0) scale(1);
+}
+
+/* LOGO MOTION */
+.logo{
+    width:clamp(120px, 35vw, 180px);
+    margin-bottom:15px;
+    filter: drop-shadow(0 0 18px rgba(255,0,60,0.5));
+
+    opacity:0;
+    transform:translateY(-40px);
+    transition:0.9s ease;
+}
+
+.logo.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* TITLE */
+h1{
+    font-size:clamp(18px,4.5vw,28px);
+    font-weight:900;
+    color:#ff003c;
+    margin-bottom:6px;
+}
+
+/* INFO */
+.info{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.box{
+    padding:12px 14px;
+    border-radius:14px;
+    background:rgba(255,0,60,0.04);
+    border-right:3px solid #ff003c;
+    color:#ddd;
+
+    opacity:0;
+    transform:translateY(15px);
+    transition:0.7s ease;
+}
+
+.box.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* BUTTONS MOTION */
+.buttons{
+    display:flex;
+    gap:12px;
+    margin-top:22px;
+    flex-wrap:wrap;
+    justify-content:center;
+
+    opacity:0;
+    transform:translateY(20px);
+    transition:0.8s ease;
+}
+
+.buttons.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.btn{
+    flex:1;
+    min-width:160px;
+    padding:12px 14px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:700;
+    text-align:center;
+    transition:0.3s ease;
+}
+
+.btn-map{
+    background:#ff003c;
+    color:#fff;
+}
+
+.btn-wa{
+    background:transparent;
+    border:1px solid rgba(255,0,60,0.6);
+    color:#ff003c;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+/* footer */
+.footer{
+    margin-top:22px;
+    font-size:10px;
+    color:#777;
+    letter-spacing:1px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<div class="poster" id="poster">
+
+    <img src="logo.png" class="logo" id="logo">
+
+    <h1>دوره تخصصی بازاریابی بتن استرامیکس</h1>
+
+    <div class="info">
+
+        <div class="box">زمان: چهارشنبه ۱۰ تیر ماه — ساعت ۸:۳۰ صبح</div>
+        <div class="box">مکان: جنت‌آباد جنوبی، میدان چهارباغ، چهارباغ غربی، پلاک ۷</div>
+
+    </div>
+
+    <div class="buttons">
+        <a class="btn btn-map" href="https://balad.ir/location?latitude=35.750607&longitude=51.302431&zoom=16.500000" target="_blank">
+            📍 آدرس در بلد
+        </a>
+
+        <a class="btn btn-wa" href="https://wa.me/989120127064" target="_blank">
+            💬 واتساپ
+        </a>
+    </div>
+
+    <div class="footer">
+        STRUMIX • ADVANCED CONSTRUCTION SYSTEMS
+    </div>
+
+</div>
+
+<script>
+window.addEventListener("load", () => {
+
+    const poster = document.getElementById("poster");
+    const logo = document.getElementById("logo");
+    const boxes = document.querySelectorAll(".box");
+    const buttons = document.querySelector(".buttons");
+
+    setTimeout(()=> poster.classList.add("show"), 200);
+    setTimeout(()=> logo.classList.add("show"), 500);
+
+    boxes.forEach((b, i) => {
+        setTimeout(() => {
+            b.classList.add("show");
+        }, 800 + i * 250);
+    });
+
+    setTimeout(()=> buttons.classList.add("show"), 1300);
+});
+</script>
+
+</body>
+</html>
